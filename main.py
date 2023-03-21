@@ -1,4 +1,5 @@
 from tkinter import *
+#이미지 편집을 도와주기 위한 pil 패키지
 from PIL import Image, ImageTk
 import math
 # ---------------------------- CONSTANTS ------------------------------- #
@@ -71,9 +72,13 @@ window.config(padx= 30, pady=30, bg=YELLOW)
 title_label= Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME,15,"bold"))
 title_label.grid(column=1, row=0)
 
+#작은 토마토를 원해서 canvas 사이즈부터 줄였다. highlightthickness는 테두리 없애기 위해서 . 시각적인 효과
 canvas = Canvas(width=100, height= 112, bg=YELLOW, highlightthickness=0)
+#이미지 형식으로 집어 넣어야 코드가 동작한다. 
 img= Image.open('C:\\pythone\\project\\charmpro\\23\\3월13일\\tomato.png')
+#zoom을 0.5로 잡아서 전체적인 이미지 사이즈를 줄인다.
 zoom =0.5
+#tuple과 listcomprehension을 이용해 각각의 픽셀사이즈를 줄여준다.
 pixel_x, pixel_y = tuple([int(zoom * x) for x in img.size])
 img = ImageTk.PhotoImage(img.resize((pixel_x, pixel_y)))
 canvas.create_image(50,56, image= img)
